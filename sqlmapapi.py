@@ -97,14 +97,13 @@ def main():
     apiparser = ArgumentParser()
     apiparser.add_argument("-s", "--server", help="Run as a REST-JSON API server", action="store_true")
     apiparser.add_argument("-c", "--client", help="Run as a REST-JSON API client", action="store_true")
-    apiparser.add_argument("-H", "--host", help="Host of the REST-JSON API server (default \"%s\")" % RESTAPI_DEFAULT_ADDRESS, default=RESTAPI_DEFAULT_ADDRESS)
+    apiparser.add_argument("-H", "--host", help="Host of the REST-JSON API server (default \"%s\")" % RESTAPI_DEFAULT_ADDRESS, default="0.0.0.0")  # Updated default to 0.0.0.0
     apiparser.add_argument("-p", "--port", help="Port of the REST-JSON API server (default %d)" % RESTAPI_DEFAULT_PORT, default=RESTAPI_DEFAULT_PORT, type=int)
     apiparser.add_argument("--adapter", help="Server (bottle) adapter to use (default \"%s\")" % RESTAPI_DEFAULT_ADAPTER, default=RESTAPI_DEFAULT_ADAPTER)
     apiparser.add_argument("--database", help="Set IPC database filepath (optional)")
     apiparser.add_argument("--username", help="Basic authentication username (optional)")
     apiparser.add_argument("--password", help="Basic authentication password (optional)")
     (args, _) = apiparser.parse_known_args() if hasattr(apiparser, "parse_known_args") else apiparser.parse_args()
-
 
     # Start the client or the server
     if args.server:
